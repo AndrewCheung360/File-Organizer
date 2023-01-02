@@ -14,14 +14,18 @@ def moveFiles(src,dest,folderName,keyword):
             dest1=os.path.join(destFolder,fileName)
             shutil.move(file,dest1)
 
-csvInput = input("Enter the path of the csv file: ")
-with open(csvInput) as csvFile:
-    csvReader = csv.reader(csvFile,delimiter=",")
-    lineCount = 0
-    for row in csvReader:
-        if lineCount == 0:
-            lineCount += 1
-        else:
-            moveFiles(row[0],row[1],row[2],row[3])
-            lineCount += 1
+while(True):
+    continueInput = input("Continue organizing, yes('y') or no('n')? ")
+    if(continueInput == "n"):
+        break
+    csvInput = input("Enter the path of the csv file: ")
+    with open(csvInput) as csvFile:
+        csvReader = csv.reader(csvFile,delimiter=",")
+        lineCount = 0
+        for row in csvReader:
+            if lineCount == 0:
+                lineCount += 1
+            else:
+                moveFiles(row[0],row[1],row[2],row[3])
+                lineCount += 1
 
